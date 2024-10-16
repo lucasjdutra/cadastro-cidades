@@ -1,0 +1,6 @@
+{
+  "cidades": [
+    { "id": 1, "nome": "São Paulo", "estado": "SP", "populacao": 12300000, "capital": true, "clima": "Tropical" },
+    { "id": 2, "nome": "Rio de Janeiro", "estado": "RJ", "populacao": 6748000, "capital": true, "clima": "Tropical" }
+  ]
+}
