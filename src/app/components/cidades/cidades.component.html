@@ -1,1 +1,74 @@
-<p>cidades works!</p>
+<div class="container mt-4">
+  <h2>Lista de Cidades</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Estado</th>
+        <th>População</th>
+        <th>Capital</th>
+        <th>Clima</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cidade of cidades">
+        <td>{{ cidade.nome }}</td>
+        <td>{{ cidade.estado }}</td>
+        <td>{{ cidade.populacao }}</td>
+        <td>{{ cidade.capital ? 'Sim' : 'Não' }}</td>
+        <td>{{ cidade.clima }}</td>
+        <td>
+          <button (click)="editarCidade(cidade)" class="btn btn-sm btn-warning">Editar</button>
+          <button (click)="removerCidade(cidade.id)" class="btn btn-sm btn-danger">Remover</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>{{ cidadeSelecionada ? 'Editar Cidade' : 'Cadastrar Cidade' }}</h3>
+  <form (ngSubmit)="salvarCidade()">
+    <div class="mb-3">
+      <label for="nome" class="form-label">Nome da Cidade</label>
+      <input type="text" class="form-control" [(ngModel)]="cidadeForm.nome" name="nome" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="estado" class="form-label">Estado</label>
+      <select class="form-select" [(ngModel)]="cidadeForm.estado" name="estado" required>
+        <option value="SP">São Paulo</option>
+        <option value="RJ">Rio de Janeiro</option>
+        <option value="MG">Minas Gerais</option>
+        <option value="RS">Rio Grande do Sul</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="populacao" class="form-label">População</label>
+      <input type="number" class="form-control" [(ngModel)]="cidadeForm.populacao" name="populacao" required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Capital?</label>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" [(ngModel)]="cidadeForm.capital" name="capital" [value]="true" required>
+        <label class="form-check-label" for="capital">Sim</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" [(ngModel)]="cidadeForm.capital" name="capital" [value]="false" required>
+        <label class="form-check-label" for="capital">Não</label>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="clima" class="form-label">Clima</label>
+      <select class="form-select" [(ngModel)]="cidadeForm.clima" name="clima" required>
+        <option value="Tropical">Tropical</option>
+        <option value="Subtropical">Subtropical</option>
+        <option value="Semiárido">Semiárido</option>
+      </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">{{ cidadeSelecionada ? 'Atualizar' : 'Cadastrar' }}</button>
+  </form>
+</div>
